@@ -1,5 +1,5 @@
 import Config from "./components/Config"
-import DirectAccess from "./components/DirectAccess"
+import ShortCuts  from "./components/ShortCuts"
 import Input from "./components/Input"
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <div className="mt-36 flex flex-col items-center justify-center">
         <Input />
       </div>
-      <DirectAccess></DirectAccess>
+      <ShortCuts></ShortCuts>
     </div>
   )
 }
