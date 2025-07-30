@@ -1,6 +1,6 @@
 
 
-export default function Shortcut({ name, url }: { name: string, url: string }) {
+export default function Shortcut({ name, url, children }: { name: string, url: string }) {
     const domain = new URL(url).origin;
     const iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
     return (
