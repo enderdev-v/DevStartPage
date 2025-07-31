@@ -1,14 +1,31 @@
-import { useState, type JSX } from "react"
+import { useState, type FormEvent, type JSX } from "react"
 import Shortcut from "./ShortCut";
+import Modal from "./Modal";
 
 export default function ShortCuts() {
-
+  // States 
+  const [modalState, setModalState] = useState(false);
   const [shortcuts, setShortcuts] = useState<JSX.Element[]>([]);
-  const Onclick = () => {
+  
+  // Functions 
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { name, url } = e.target as HTMLFormElement
+    if (!name || !url || !(name as any).value || !(url as any).value) {
+      return alert("Please fill all fields");
+    }
+    
+    console.log((name as any).value, url.value);
     if (shortcuts.length >= 8) {
       return;
     }
-    setShortcuts([...(shortcuts || []), <Shortcut url="https://enderdev.vercel.app" name="enderdev"></Shortcut>]);
+    setShortcuts([...(shortcuts || []), <Shortcut url={url.value} name={(name as any).value}></Shortcut>]);
+    
+  }
+
+  const Onclick = () => {
+    setModalState(!modalState);
   }
   const ButtonClass = shortcuts.length >= 8 ? "transparent text-transparent" : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" ;
 
@@ -27,6 +44,7 @@ export default function ShortCuts() {
         </button>
         
       </div>
+        <Modal state={modalState} onSubmit={onSubmit}/> {/* Todo bien :D*/}
     </div>
   )
 }
