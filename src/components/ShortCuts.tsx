@@ -21,13 +21,13 @@ export default function ShortCuts() {
       return;
     }
     setShortcuts([...(shortcuts || []), <Shortcut url={url.value} name={(name as any).value}></Shortcut>]);
-    
+    return setModalState(!modalState);
   }
 
   const Onclick = () => {
     setModalState(!modalState);
   }
-  const ButtonClass = shortcuts.length >= 8 ? "hidden" : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" ;
+  const ButtonClass = shortcuts.length >= 8 ? "hidden" : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded cursor-pointer "; ;
 
   return (
     <div className="mt-6 flex flex-col items-center justify-center text-white">
