@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchEngines } from "../constants/Searchengines";
+import { SearchEngines } from "../constants/constants";
 
 export default function Input() {
   const [SearchEngine, setSearchEngine] = useState("Google");
@@ -18,7 +18,7 @@ export default function Input() {
   const DropdownClass = state ? "hidden" : "block";
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
+    <div className="flex flex-col items-center justify-center w-full h-full select-none">
       <div className="flex items-center w-full max-w-2xl">
         <div className="relative">
           <div className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-l-lg cursor-pointer hover:outline-indigo-700 hover:outline-1" onClick={() => setState(!state)}>

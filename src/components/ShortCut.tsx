@@ -1,8 +1,9 @@
+import { UrlDomain } from "../constants/constants";
 
 
 export default function Shortcut({ name, url }: { name: string, url: string }) {
     const domain = new URL(url).origin;
-    const iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+    const iconUrl = `${UrlDomain}${domain}`;
     return (
         <div className="dark:bg-gray-800 bg-gray-500 h-28 w-24 rounded-lg relative">
                 <button className="absolute top-0 right-0  hover:outline-1 hover:outline-blue-800 text-white font-bold py-1 px-2 rounded"

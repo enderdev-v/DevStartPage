@@ -27,7 +27,7 @@ export default function ShortCuts() {
   const Onclick = () => {
     setModalState(!modalState);
   }
-  const ButtonClass = shortcuts.length >= 8 ? "transparent text-transparent" : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" ;
+  const ButtonClass = shortcuts.length >= 8 ? "hidden" : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" ;
 
   return (
     <div className="mt-6 flex flex-col items-center justify-center text-white">
