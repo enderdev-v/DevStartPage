@@ -21,14 +21,14 @@ export default function Input() {
     <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="flex items-center w-full max-w-2xl">
         <div className="relative">
-          <div className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-l-lg cursor-pointer" onClick={() => setState(!state)}>
+          <div className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-l-lg cursor-pointer hover:outline-indigo-700 hover:outline-1" onClick={() => setState(!state)}>
             <span className="mr-2">Engine: <span className="font-bold">{SearchEngine}</span></span>
-            <ul className={`absolute top-full left-0 mt-1 bg-gray-300 rounded-lg p-2 w-full ${DropdownClass}`}>
-              <li><button className="w-full text-left p-1 hover:bg-gray-400 rounded" onClick={() => setSearchEngine("Google")}>Google</button></li>
-              <li><button className="w-full text-left p-1 hover:bg-gray-400 rounded" onClick={() => setSearchEngine("Bing")}>Bing</button></li>
-              <li><button className="w-full text-left p-1 hover:bg-gray-400 rounded" onClick={() => setSearchEngine("Duckduckgo")}>DuckDuckGo</button></li>
-              <li><button className="w-full text-left p-1 hover:bg-gray-400 rounded" onClick={() => setSearchEngine("Yahoo")}>Yahoo</button></li>
-              <li><button className="w-full text-left p-1 hover:bg-gray-400 rounded" onClick={() => setSearchEngine("Ecosia")}>Ecosia</button></li>
+            <ul className={`absolute top-full left-0 mt-1 dark:bg-gray-900 dark:text-white text-gray-800 bg-gray-300 rounded-lg p-2 w-full ${DropdownClass}`}>
+              <li><button className="w-full text-left p-1 rounded" onClick={() => setSearchEngine("Google")}>Google</button></li>
+              <li><button className="w-full text-left p-1 rounded" onClick={() => setSearchEngine("Bing")}>Bing</button></li>
+              <li><button className="w-full text-left p-1 rounded" onClick={() => setSearchEngine("Duckduckgo")}>DuckDuckGo</button></li>
+              <li><button className="w-full text-left p-1 rounded" onClick={() => setSearchEngine("Yahoo")}>Yahoo</button></li>
+              <li><button className="w-full text-left p-1 rounded" onClick={() => setSearchEngine("Ecosia")}>Ecosia</button></li>
             </ul>
           </div>
         </div>
