@@ -15,6 +15,22 @@ export const DefaultDocs = [
     },
     {
         name: "React",
-        url: "https://react.dev",
-    }
+        url: "https://es.react.dev/blog/2023/03/16/introducing-react-dev",
+    },
+    {
+        name: "Next.js",
+        url: "https://nextjs.org/docs",
+    },
+    {
+        name: "Javascript",
+        url: "https://developer.mozilla.org/es/docs/Web/JavaScript",
+    },
+    {
+        name: "Typescript",
+        url: "https://www.typescriptlang.org/docs/",
+    },
+    {
+        name: "Astro",
+        url: "https://docs.astro.build/en/getting-started/",
+    },
 ]

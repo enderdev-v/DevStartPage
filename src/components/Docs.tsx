@@ -8,13 +8,25 @@ export default function Docs({ }) {
 
   // functions
   
-
+  
   
   const OnkeyDown = (e: any) => {
     if (e.key !== 'Enter') return;
-    const url = new URL(e.target.value); // Validate URL
-    addDocs([...docs, { name: url.hostname, url: url.href}]);
-    return e.target.value = ""; // Clear input after adding
+    
+    try {
+        const url = new URL(e.target.value); // Validate URL
+        fetch(url.href)
+          .then(response => response.text())
+          .then(html => {
+            const match = html.match(/<title>(.*?)<\/title>/i);
+            const title = match ? match[1] : url.hostname;
+            addDocs([...docs, { name: title, url: url.href }]);
+          })
+          .catch(() => {
+            addDocs([...docs, { name: url.hostname, url: url.href}]);
+          });
+      } catch {}
+      return e.target.value = ""; // Clear input after adding
 
   }
 
@@ -29,7 +41,7 @@ export default function Docs({ }) {
         className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-lg cursor-pointer hover:outline-indigo-700 hover:outline-1"
         onClick={() => setState(!state)}
       >
-        <span className="mr-2">
+        <span className="text-lg">
           <i className="bx bxs-book-open"></i>&nbsp;Docs
         </span>
         <ul
