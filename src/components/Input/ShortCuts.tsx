@@ -1,11 +1,12 @@
-import { useState, type FormEvent, type JSX } from "react"
+import { useState, type FormEvent } from "react"
 import Shortcut from "./ShortCut";
 import Modal from "./Modal";
+import type { ShortCutType } from "../../types";
 
 export default function ShortCuts() {
   // States 
   const [modalState, setModalState] = useState(false);
-  const [shortcuts, setShortcuts] = useState<JSX.Element[]>([]);
+  const [shortcuts, setShortcuts] = useState<ShortCutType[]>([]);
   
   // Functions 
 
@@ -13,31 +14,32 @@ export default function ShortCuts() {
     e.preventDefault();
     const { name, url } = e.target as HTMLFormElement
     if (!name || !url || !(name as any).value || !(url as any).value) {
-      return alert("Please fill all fields");
+      return;
     }
-    
-    console.log((name as any).value, url.value);
     if (shortcuts.length >= 8) {
       return;
     }
-    setShortcuts([...(shortcuts || []), <Shortcut url={url.value} name={(name as any).value}></Shortcut>]);
+    const newShortcut: ShortCutType = {
+      name: (name as any).value,
+      url: (url as any).value
+    };
+    setShortcuts([...(shortcuts || []), newShortcut]);
     return setModalState(!modalState);
   }
 
   const Onclick = () => {
     setModalState(!modalState);
   }
-  const ButtonClass = shortcuts.length >= 8 ? "hidden" : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded cursor-pointer "; ;
 
   return (
     <div className="mt-6 flex flex-col items-center justify-center text-white">
       <div className="mt-4 grid grid-cols-4 gap-4">
         {shortcuts.map((shortcut, index) => (
-          <div key={index}>
-            {shortcut}
-          </div>
+          <Shortcut url={shortcut.url} name={shortcut.name} key={index}></Shortcut>
         ))}
-        <button onClick={Onclick} className={ButtonClass}>
+        <button onClick={Onclick} className={
+          shortcuts.length >= 8 ? "hidden" : 
+          "dark:hover:bg-gray-800 hover:bg-gray-500  text-white font-bold py-1 px-2 cursor-pointer dark:bg-gray-800/50 bg-gray-500/50 h-28 w-24 rounded-lg relative"}>
           <span className="text-3xl">+</span>
           <br />
           Add Shortcut

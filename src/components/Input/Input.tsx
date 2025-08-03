@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchEngines } from "../constants/constants";
+import { SearchEngines } from "../../constants/constants";
 
 export default function Input() {
   const [SearchEngine, setSearchEngine] = useState("Google");
@@ -12,7 +12,8 @@ export default function Input() {
     ) || SearchEngines.google; // Default to Google if no match found
 
     const query = encodeURIComponent((e.target as HTMLInputElement).value);
-    window.open(engine + query, "_blank");
+    window.location.href = engine + query;
+    return (e.target as HTMLInputElement).value = ""; // Clear input after search
 
   }
   const DropdownClass = state ? "hidden" : "block";

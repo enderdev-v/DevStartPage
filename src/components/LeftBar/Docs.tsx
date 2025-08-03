@@ -1,5 +1,5 @@
 import { useState, } from "react";
-import { DefaultDocs, } from "../constants/constants";
+import { DefaultDocs, } from "../../constants/constants";
 import Links from "./Links";
 
 export default function Docs({ }) {

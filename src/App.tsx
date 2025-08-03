@@ -1,10 +1,10 @@
-// import Config from "./components/Config"
-import ShortCuts from "./components/ShortCuts"
-import Input from "./components/Input"
-import Docs from "./components/Docs"
-import Welcome from "./components/Welcome"
+import Config from "./components/Config/ConfigMenu"
+import ShortCuts from "./components/Input/ShortCuts"
+import Input from "./components/Input/Input"
+import Docs from "./components/LeftBar/Docs"
+import Welcome from "./components/LeftBar/Welcome"
 
-function App() {
+function App() {  
 
   return (
     <>
@@ -14,9 +14,11 @@ function App() {
       <Welcome></Welcome>
       </div>
 
+        <div className="absolute top-4 right-4">
+          <Config />
+        </div>
     </div>
       <div className="m-16 mt-20">
-        {/* <Config></Config> */}
         <div className="mt-36 flex flex-col items-center justify-center">
           <Input />
         </div>

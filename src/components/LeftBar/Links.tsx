@@ -1,4 +1,4 @@
-import { UrlDomain } from "../constants/constants";
+import { UrlDomain } from "../../constants/constants";
 
 export default function Link({ name, url }: { name: string, url: string }) {
     const domain = new URL(url).origin;
