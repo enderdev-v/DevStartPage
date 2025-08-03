@@ -6,7 +6,11 @@ import type { ShortCutType } from "../../types";
 export default function ShortCuts() {
   // States 
   const [modalState, setModalState] = useState(false);
-  const [shortcuts, setShortcuts] = useState<ShortCutType[]>([]);
+  const [shortcuts, setShortcuts] = useState<ShortCutType[]>(() => {
+    const storedShortcuts = window.localStorage.getItem("shortcuts");
+
+    return storedShortcuts ? JSON.parse(storedShortcuts) : [];
+  });
   
   // Functions 
 
@@ -24,18 +28,32 @@ export default function ShortCuts() {
       url: (url as any).value
     };
     setShortcuts([...(shortcuts || []), newShortcut]);
-    return setModalState(!modalState);
+    setModalState(!modalState);
+    return (e.target as HTMLFormElement).reset()
+  }
+
+  // Save Shortcuts to localStorage
+
+  if (shortcuts) {
+    window.localStorage.setItem("shortcuts", JSON.stringify(shortcuts));
   }
 
   const Onclick = () => {
     setModalState(!modalState);
   }
 
+  const deleteShortcut = (index: number) => {
+    const updatedShortcuts = shortcuts.filter((_, i) => i !== index);
+    setShortcuts(updatedShortcuts);
+    window.localStorage.setItem("shortcuts", JSON.stringify(updatedShortcuts));
+  }
+
+
   return (
     <div className="mt-6 flex flex-col items-center justify-center text-white">
       <div className="mt-4 grid grid-cols-4 gap-4">
         {shortcuts.map((shortcut, index) => (
-          <Shortcut url={shortcut.url} name={shortcut.name} key={index}></Shortcut>
+          <Shortcut url={shortcut.url} name={shortcut.name} key={index} Onclick={() => deleteShortcut(index)}></Shortcut>
         ))}
         <button onClick={Onclick} className={
           shortcuts.length >= 8 ? "hidden" : 

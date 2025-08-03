@@ -4,11 +4,13 @@ import Links from "./Links";
 
 export default function Docs({ }) {
   const [state, setState] = useState(true);
-  const [docs, addDocs] = useState(DefaultDocs);
+  const [docs, updateDocs] = useState(() => {
+    const storedDocs = window.localStorage.getItem("Docs");
+    return storedDocs ? JSON.parse(storedDocs) : DefaultDocs;
+  });
+  
 
   // functions
-  
-  
   
   const OnkeyDown = (e: any) => {
     if (e.key !== 'Enter') return;
@@ -20,14 +22,19 @@ export default function Docs({ }) {
           .then(html => {
             const match = html.match(/<title>(.*?)<\/title>/i);
             const title = match ? match[1] : url.hostname;
-            addDocs([...docs, { name: title, url: url.href }]);
+            updateDocs([...docs, { name: title, url: url.href }]);
           })
           .catch(() => {
-            addDocs([...docs, { name: url.hostname, url: url.href}]);
+            updateDocs([...docs, { name: url.hostname, url: url.href}]);
           });
       } catch {}
       return e.target.value = ""; // Clear input after adding
 
+  }
+
+  // Save Docs to localStorage
+  if (docs) {
+    window.localStorage.setItem("Docs", JSON.stringify(docs));
   }
 
   const DropdownClass = state ? "hidden" : "block";
@@ -35,8 +42,17 @@ export default function Docs({ }) {
     e.stopPropagation();
   };
 
+  // Delete a doc
+
+  const deleteDoc = (e: any,index: number) => {
+    e.stopPropagation();
+    const UpdatedDocs = docs.filter((_: any, i: any) => i !== index);
+    updateDocs(UpdatedDocs);
+    window.localStorage.setItem("docs", JSON.stringify(UpdatedDocs));
+  }
+
   return (
-    <div className="relative left-0.5 top-0 w-60 rounded-2xl m-4 select-none">
+    <div className="relative left-0.5 top-0 w-64 rounded-2xl m-4 select-none">
       <div
         className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-lg cursor-pointer hover:outline-indigo-700 hover:outline-1"
         onClick={() => setState(!state)}
@@ -47,8 +63,8 @@ export default function Docs({ }) {
         <ul
           className={`absolute top-full left-0 mt-1 dark:bg-gray-900 dark:text-white text-gray-800 bg-gray-300 rounded-lg p-2 w-full ${DropdownClass} z-50 shadow-lg`}
         >
-          {docs.map((doc, index) => (
-            <Links key={index} name={doc.name} url={doc.url} />
+          {docs.map((doc: any, index: any) => (
+            <Links key={index} name={doc.name} url={doc.url} Onclick={(e: any) => deleteDoc(e, index)}/>
           ))}
           <li className="w-full text-left p-1 rounded mt-1">
             <input
