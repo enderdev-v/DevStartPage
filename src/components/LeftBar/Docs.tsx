@@ -1,11 +1,11 @@
 import { useState, } from "react";
-import { DefaultDocs, } from "../../constants/constants";
+import { DefaultDocs, LocalStorageKeys, } from "../../constants/constants";
 import Links from "./Links";
 
 export default function Docs({ }) {
   const [state, setState] = useState(true);
   const [docs, updateDocs] = useState(() => {
-    const storedDocs = window.localStorage.getItem("Docs");
+    const storedDocs = window.localStorage.getItem(LocalStorageKeys.Docs);
     return storedDocs ? JSON.parse(storedDocs) : DefaultDocs;
   });
   
@@ -34,7 +34,7 @@ export default function Docs({ }) {
 
   // Save Docs to localStorage
   if (docs) {
-    window.localStorage.setItem("Docs", JSON.stringify(docs));
+    window.localStorage.setItem(LocalStorageKeys.Docs, JSON.stringify(docs));
   }
 
   const DropdownClass = state ? "hidden" : "block";
@@ -48,13 +48,13 @@ export default function Docs({ }) {
     e.stopPropagation();
     const UpdatedDocs = docs.filter((_: any, i: any) => i !== index);
     updateDocs(UpdatedDocs);
-    window.localStorage.setItem("docs", JSON.stringify(UpdatedDocs));
+    window.localStorage.setItem(LocalStorageKeys.Docs, JSON.stringify(UpdatedDocs));
   }
 
   return (
     <div className="relative left-0.5 top-0 w-64 rounded-2xl m-4 select-none">
       <div
-        className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-lg cursor-pointer hover:outline-indigo-700 hover:outline-1"
+        className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-lg cursor-pointer dark:hover:outline-gray-300 hover:outline-gray-600 hover:outline-1"
         onClick={() => setState(!state)}
       >
         <span className="text-lg">

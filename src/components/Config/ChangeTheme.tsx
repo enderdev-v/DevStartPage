@@ -9,7 +9,6 @@ export default function ChangeTheme() {
     })
 
     useEffect(() => {
-        console.log("Theme changed to:", theme);
         if (theme === "dark") {
             return document.querySelector("html")?.classList.add("dark");
         } else {

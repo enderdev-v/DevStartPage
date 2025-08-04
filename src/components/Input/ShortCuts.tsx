@@ -2,12 +2,13 @@ import { useState, type FormEvent } from "react"
 import Shortcut from "./ShortCut";
 import Modal from "./Modal";
 import type { ShortCutType } from "../../types";
+import { LocalStorageKeys } from "../../constants/constants";
 
 export default function ShortCuts() {
   // States 
   const [modalState, setModalState] = useState(false);
   const [shortcuts, setShortcuts] = useState<ShortCutType[]>(() => {
-    const storedShortcuts = window.localStorage.getItem("shortcuts");
+    const storedShortcuts = window.localStorage.getItem(LocalStorageKeys.ShortCuts);
 
     return storedShortcuts ? JSON.parse(storedShortcuts) : [];
   });
@@ -35,7 +36,7 @@ export default function ShortCuts() {
   // Save Shortcuts to localStorage
 
   if (shortcuts) {
-    window.localStorage.setItem("shortcuts", JSON.stringify(shortcuts));
+    window.localStorage.setItem(LocalStorageKeys.ShortCuts, JSON.stringify(shortcuts));
   }
 
   const Onclick = () => {
@@ -45,7 +46,7 @@ export default function ShortCuts() {
   const deleteShortcut = (index: number) => {
     const updatedShortcuts = shortcuts.filter((_, i) => i !== index);
     setShortcuts(updatedShortcuts);
-    window.localStorage.setItem("shortcuts", JSON.stringify(updatedShortcuts));
+    window.localStorage.setItem(LocalStorageKeys.ShortCuts, JSON.stringify(updatedShortcuts));
   }
 
 
