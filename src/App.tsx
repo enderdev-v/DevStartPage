@@ -9,7 +9,7 @@ import { LocalStorageKeys } from "./constants/constants"
 function App() {
   const [user, SetUsername] = useState(() => {
     const storedUsername = localStorage.getItem("username");
-    return storedUsername ? storedUsername : "Guest";
+    return storedUsername ? storedUsername : "user";
   });
 
   const [location, setLocation] = useState(() => {

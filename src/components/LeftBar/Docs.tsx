@@ -52,7 +52,7 @@ export default function Docs({ }) {
   }
 
   return (
-    <div className="relative left-0.5 top-0 w-68 rounded-2xl m-4 select-none">
+    <div className="relative left-0.5 top-0 w-68 rounded-2xl m-4 select-none max-md:hidden">
       <div
         className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-lg cursor-pointer dark:hover:outline-gray-300 hover:outline-gray-600 hover:outline-1"
         onClick={() => setState(!state)}

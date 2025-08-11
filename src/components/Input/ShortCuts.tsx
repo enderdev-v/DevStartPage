@@ -51,7 +51,7 @@ export default function ShortCuts() {
 
 
   return (
-    <div className="mt-6 flex flex-col items-center justify-center text-white">
+    <div className="mt-6 flex flex-col items-center justify-center text-white max-md:hidden">
       <div className="mt-4 grid grid-cols-4 gap-4">
         {shortcuts.map((shortcut, index) => (
           <Shortcut url={shortcut.url} name={shortcut.name} key={index} Onclick={() => deleteShortcut(index)}></Shortcut>

@@ -19,10 +19,10 @@ export default function Input() {
   const DropdownClass = state ? "hidden" : "block";
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full select-none">
+    <div className="flex flex-col items-center justify-center w-full h-full select-none mr-4 ">
       <div className="flex items-center w-full max-w-2xl">
         <div className="relative">
-          <div className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-l-lg cursor-pointer dark:hover:outline-gray-300 hover:outline-gray-600 hover:outline-1" onClick={() => setState(!state)}>
+          <div className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 max-md:py-0 rounded-l-lg cursor-pointer dark:hover:outline-gray-300 hover:outline-gray-600 hover:outline-1" onClick={() => setState(!state)}>
             <span className="mr-2">Engine: <span className="font-bold">{SearchEngine}</span></span>
             <ul className={`absolute top-full left-0 mt-1 dark:bg-gray-900 dark:text-white text-gray-800 bg-gray-300 rounded-lg p-2 w-full ${DropdownClass} z-50 shadow-lg`}>
               <li><button className="w-full text-left p-1 rounded" onClick={() => setSearchEngine("Google")}>Google</button></li>
@@ -36,7 +36,7 @@ export default function Input() {
 
         <input
           type="text"
-          className="flex-1 focus:outline-0  p-2 rounded-r-3xl bg-gray-100 dark:bg-gray-900 h-12 dark:text-white text-gray-800"
+          className="flex-1 focus:outline-0  p-2 py-3 rounded-r-3xl bg-gray-100 dark:bg-gray-900 h-12 dark:text-white text-gray-800"
           placeholder="🔎   Search or type a URL"
           onKeyDown={OnkeyDown}
         />
