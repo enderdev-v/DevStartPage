@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { LocalStorageKeys } from "../../constants/constants";
 
 export default function ChangeTheme() {
     const [theme, setTheme] = useState(() => {
+        const storedTheme = localStorage.getItem(LocalStorageKeys.Theme);
+        if (storedTheme) return storedTheme;
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             return "dark";
         }
@@ -15,7 +18,7 @@ export default function ChangeTheme() {
             return document.querySelector("html")?.classList.remove("dark");
         }
     }, [theme])
-
+    window.localStorage.setItem(LocalStorageKeys.Theme, theme)
     const handleChange = (e: any) => {
         e.stopPropagation();
         setTheme(prevtheme => prevtheme === "dark" ? "light" : "dark")

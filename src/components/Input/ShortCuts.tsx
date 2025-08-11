@@ -58,7 +58,7 @@ export default function ShortCuts() {
         ))}
         <button onClick={Onclick} className={
           shortcuts.length >= 8 ? "hidden" : 
-          "dark:hover:bg-gray-800 hover:bg-gray-500  text-white font-bold py-1 px-2 cursor-pointer dark:bg-gray-800/50 bg-gray-500/50 h-28 w-24 rounded-lg relative"}>
+          "dark:hover:bg-gray-800 hover:bg-gray-500  text-white font-bold py-1 px-2 cursor-pointer dark:bg-gray-800/50 bg-gray-500/50 h-28 w-24 rounded-lg relative select-none"}>
           <span className="text-3xl">+</span>
           <br />
           Add Shortcut

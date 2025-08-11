@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SearchEngines } from "../../constants/constants";
+import { UrlCheck } from "../../constants/functions";
 
 export default function Input() {
   const [SearchEngine, setSearchEngine] = useState("Google");
@@ -7,14 +8,13 @@ export default function Input() {
 
   const OnkeyDown = (e: any) => {
     if (e.key !== 'Enter') return;
+    let target = (e.target as HTMLInputElement).value
     const engine = Object.values(SearchEngines).find(
       (engine) => engine.includes(SearchEngine.toLowerCase())
     ) || SearchEngines.google; // Default to Google if no match found
-
-    const query = encodeURIComponent((e.target as HTMLInputElement).value);
-    window.location.href = engine + query;
-    return (e.target as HTMLInputElement).value = ""; // Clear input after search
-
+    const location = UrlCheck(target) ? String(target) : `${engine + encodeURIComponent(target)}`
+    window.location.href = location;
+    return target = ""; // Clear input after search
   }
   const DropdownClass = state ? "hidden" : "block";
 

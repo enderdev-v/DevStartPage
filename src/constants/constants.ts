@@ -57,7 +57,8 @@ export const LocalStorageKeys = {
     Docs: "Docs",
     Weather: "Weather",
     ShortCuts: "ShortCuts",
-    username: "username"
+    username: "username",
+    Theme: "theme"
 };
 
 

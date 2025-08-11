@@ -66,3 +66,14 @@ export async function getCoordinates(city: string): Promise<{ latitude: number; 
     return null;
   }
 }
+
+// URL check
+
+export function UrlCheck(query: string): boolean {
+  try {
+    new URL(query);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
