@@ -1,7 +1,7 @@
 export default function Modal({ state, onSubmit }: { state: boolean, onSubmit: any }) {
-   const modalState = state ? "block" : "hidden";
+   const modalState = state ? "absolute" : "hidden";
     return (
-        <div className={`inset-0 bg-gray-800 h-80 w-68 m-2 p-3 ${modalState}`} >
+        <div className={`inset-0 dark:bg-gray-900 dark:text-white text-gray-800 bg-gray-300 h-80 w-68 m-2 p-3 ${modalState}`} >
             <h3 className="text-2xl font-bold">Crear Acceso Directo</h3>
             <form
                 className="flex flex-col m-3"

@@ -52,7 +52,7 @@ export default function Docs({ }) {
   }
 
   return (
-    <div className="relative left-0.5 top-0 w-64 rounded-2xl m-4 select-none">
+    <div className="relative left-0.5 top-0 w-68 rounded-2xl m-4 select-none">
       <div
         className="flex items-center dark:bg-gray-900 bg-gray-300 dark:text-white text-gray-900  px-3 py-3 rounded-lg cursor-pointer dark:hover:outline-gray-300 hover:outline-gray-600 hover:outline-1"
         onClick={() => setState(!state)}
@@ -61,7 +61,7 @@ export default function Docs({ }) {
           <i className="bx bxs-book-open"></i>&nbsp;Docs
         </span>
         <ul
-          className={`absolute top-full left-0 mt-1 dark:bg-gray-900 dark:text-white text-gray-800 bg-gray-300 rounded-lg p-2 w-full ${DropdownClass} z-50 shadow-lg`}
+          className={`h-84 overflow-y-auto absolute top-full left-0 mt-1 dark:bg-gray-900 dark:text-white text-gray-800 bg-gray-300 rounded-lg p-2 w-full ${DropdownClass} z-50 shadow-lg`}
         >
           {docs.map((doc: any, index: any) => (
             <Links key={index} name={doc.name} url={doc.url} Onclick={(e: any) => deleteDoc(e, index)}/>
