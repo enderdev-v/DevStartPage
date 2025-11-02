@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ConfigButton from "./ButtonConfig";
 
 interface WeatherConfigProps {
   onWeatherSubmit: (location: string) => void;
@@ -43,29 +44,16 @@ export default function WeatherConfig({ onWeatherSubmit }: WeatherConfigProps) {
       <h6 className="font-bold">Weather Config</h6>
       <form className="flex flex-col m-3" onSubmit={handleSubmit}>
         <label className="text-lg">Find Location</label>
-        <input
-          type="text"
-          name="city"
-          placeholder="Example: Paris, Madrid, Buenos Aires"
-          className="mb-2 p-2 rounded"
-          required
-          value={location}
+        <input type="text" name="city" placeholder="Example: Paris, Madrid, Buenos Aires" className="mb-2 p-2 rounded" required value={location}
           onChange={(e) => setLocation(e.target.value)}
           onClick={handleInputClick}
         />
-        <button
-          type="button"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded my-4"
-          onClick={handleGetLocation}
-        >
-          get from location
-        </button>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-        >
+        <ConfigButton props={{ onClick: handleGetLocation, itemType: "button" }}>
+          Get From Device Location
+        </ConfigButton>
+        <ConfigButton props={{ onClick: handleGetLocation, itemType: "submit" }}>
           Submit
-        </button>
+        </ConfigButton>
       </form>
     </li>
   );

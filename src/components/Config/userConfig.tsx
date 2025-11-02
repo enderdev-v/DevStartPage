@@ -1,3 +1,5 @@
+import ConfigButton from "./ButtonConfig";
+
 export default function UserConfig({ onSubmit }: { onSubmit: (e: any) => void }) {
  
 
@@ -17,13 +19,9 @@ export default function UserConfig({ onSubmit }: { onSubmit: (e: any) => void })
           required
           onClick={handleClick}
         />
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-          onClick={handleClick}
-        >
-          Submit
-        </button>
+        <ConfigButton props={{ onClick:handleClick, "itemType": "submit" }}>
+          Save Username
+        </ConfigButton>
       </form>
     </li>
     );

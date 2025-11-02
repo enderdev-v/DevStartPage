@@ -3,6 +3,7 @@ import ChangeTheme from "./ChangeTheme";
 import WeatherConfig from "./WeatherConfig";
 import UserConfig from "./userConfig";
 import { LocalStorageKeys } from "../../constants/constants";
+import ConfigButton from "./ButtonConfig";
 
 interface ConfigProps {
   Submit: (e: any) => void;
@@ -12,9 +13,7 @@ interface ConfigProps {
 export default function Config({ Submit, onWeatherSubmit }: ConfigProps) {
   // Theme state
   const [state, setState] = useState(true);
-
   const DropdownClass = state ? "hidden" : "block";
-
   return (
     <div className="relative left-0.5 top-0 w-60 rounded-2xl m-4 select-none max-md:hidden">
       <div
@@ -32,18 +31,18 @@ export default function Config({ Submit, onWeatherSubmit }: ConfigProps) {
           <UserConfig onSubmit={Submit} />
           <li className="w-full text-left p-1 rounded mt-1">
             <h6 className="font-bold">Reset Values</h6>
-            <button onClick={() => {
-              window.localStorage.removeItem(LocalStorageKeys.Weather)
+            <ConfigButton props={{ onClick: () => {
+               window.localStorage.removeItem(LocalStorageKeys.Weather)
               window.localStorage.removeItem(LocalStorageKeys.Theme)
               window.localStorage.removeItem(LocalStorageKeys.username)
-            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded my-4 mx-2">
+            } }}>
               Config Value
-            </button>
-            <button onClick={() => {
+            </ConfigButton>
+            <ConfigButton props={{ onClick: () => {
               window.localStorage.clear()
-            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded my-4 mx-2 ">
+            } }}>
               All Values
-            </button>
+            </ConfigButton>
           </li>
         </ul>
       </div>
